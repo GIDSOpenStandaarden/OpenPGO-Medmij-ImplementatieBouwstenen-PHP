@@ -1,0 +1,34 @@
+{
+    "name": "gidsopenstandaarden/openpgo-php",
+    "description": "PHP implementation of the OpenPGO building blocks.",
+    "type": "library",
+    "license": "CC-BY-SA-4.0",
+    "authors": [
+        {
+            "name": "Mainly Code",
+            "email": "info@mainlycode.nl"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "psr/http-message": "^1.0",
+        "guzzlehttp/guzzle": "^6.0",
+        "webmozart/assert": "^1.3",
+        "league/oauth2-client": "^2.3",
+        "jms/serializer": "^1.13"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.2",
+        "friendsofphp/php-cs-fixer": "^2.13"
+    },
+    "autoload": {
+        "psr-4": {
+            "MedMij\\OpenPGO\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MedMij\\OpenPGO\\": "test/"
+        }
+    }
+}
