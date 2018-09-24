@@ -2,7 +2,7 @@
     "name": "gidsopenstandaarden/openpgo-php",
     "description": "PHP implementation of the OpenPGO building blocks.",
     "type": "library",
-    "license": "CC-BY-SA-4.0",
+    "license": "AGPL-3.0-only",
     "authors": [
         {
             "name": "Mainly Code",
