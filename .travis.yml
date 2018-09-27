@@ -1,0 +1,21 @@
+language: php
+
+sudo: false
+
+matrix:
+  include:
+  - php: 7.1
+  - php: 7.2
+  fast_finish: true
+
+install:
+- composer validate --strict
+- composer install
+
+script:
+- vendor/bin/phpunit --stop-on-failure
+- vendor/bin/php-cs-fixer fix --config=".php_cs" --allow-risky=yes --dry-run --diff --verbose
+
+branches:
+  only:
+  - master
