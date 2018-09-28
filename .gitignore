@@ -2,3 +2,5 @@
 /metadata/
 composer.lock
 .php_cs.cache
+junit.xml
+coverage.xml
