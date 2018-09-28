@@ -1,6 +1,6 @@
 {
-    "name": "gidsopenstandaarden/openpgo-php",
-    "description": "PHP implementation of the OpenPGO building blocks.",
+    "name": "gids-open-standaarden/open-pgo-medmij-implementatie-bouwstenen-php",
+    "description": "PHP implementation of the MedMij OpenPGO building blocks.",
     "type": "library",
     "license": "AGPL-3.0-only",
     "authors": [
