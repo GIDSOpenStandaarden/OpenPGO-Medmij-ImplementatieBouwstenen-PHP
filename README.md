@@ -1,16 +1,16 @@
 [![Build Status](https://travis-ci.org/GidsOpenStandaarden/OpenPGO-Medmij-ImplementatieBouwstenen-PHP.svg?branch=master)](https://travis-ci.org/GidsOpenStandaarden/OpenPGO-Medmij-ImplementatieBouwstenen-PHP)
 
-GidsOpenStandaarden/OpenPGO-PHP
-===============================
+gids-open-standaarden/open-pgo-medmij-implementatie-bouwstenen-php
+==================================================================
 
-OpenPGO PHP adapter
+PHP implementation of the MedMij OpenPGO building blocks.
 
 # Installation
 
 The OpenPGO PHP adapter can be installed using [Composer](https://getcomposer.org/):
 
 ```
-$ composer require gidsopenstandaarden/openpgo-php
+$ composer require gids-open-standaarden/open-pgo-medmij-implementatie-bouwstenen-php
 ```
 
 # Configuration
