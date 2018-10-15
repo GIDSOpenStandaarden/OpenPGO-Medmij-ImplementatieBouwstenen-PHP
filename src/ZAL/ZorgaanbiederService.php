@@ -20,30 +20,38 @@ declare(strict_types=1);
 
 namespace MedMij\OpenPGO\ZAL;
 
-use JMS\Serializer\Annotation as JMS;
-
-class ResourceEndpoint
+class ZorgaanbiederService
 {
     /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("ResourceEndpointuri")
+     * @var ZALClient
      */
-    private $resourceEndpointuri;
+    private $client;
 
     /**
-     * @param string $resourceEndpointuri
+     * @param ZALClient $client
      */
-    public function __construct(string $resourceEndpointuri)
+    public function __construct(ZALClient $client)
     {
-        $this->resourceEndpointuri = $resourceEndpointuri;
+        $this->client = $client;
     }
 
     /**
-     * @return string
+     * @param string $name
+     *
+     * @throws ZorgaanbiederNotFoundException
+     *
+     * @return Zorgaanbieder
      */
-    public function __toString(): string
+    public function getZorgaanbiederByName(string $name): Zorgaanbieder
     {
-        return $this->resourceEndpointuri;
+        /** @var Zorgaanbiederslijst $zorgaanbiederslijst */
+        $zorgaanbiederslijst = $this->client->getZAL();
+        foreach ($zorgaanbiederslijst->getZorgaanbieders() as $zorgaanbieder) {
+            if ($name === $zorgaanbieder->getZorgaanbiedernaam()) {
+                return $zorgaanbieder;
+            }
+        }
+
+        throw ZorgaanbiederNotFoundException::withName($name);
     }
 }

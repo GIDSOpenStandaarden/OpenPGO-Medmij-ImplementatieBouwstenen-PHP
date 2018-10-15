@@ -21,6 +21,7 @@ declare(strict_types=1);
 namespace MedMij\OpenPGO\ZAL;
 
 use JMS\Serializer\Annotation as JMS;
+use Webmozart\Assert\Assert;
 
 class Zorgaanbieder
 {
@@ -32,10 +33,46 @@ class Zorgaanbieder
     private $zorgaanbiedernaam;
 
     /**
-     * @property Gegevensdienst[] $gegevensdiensten
+     * @var Gegevensdienst[]
      * @JMS\Type("array<MedMij\OpenPGO\ZAL\Gegevensdienst>")
      * @JMS\XmlList(entry="Gegevensdienst")
      * @JMS\SerializedName("Gegevensdiensten")
      */
     private $gegevensdiensten = [];
+
+    /**
+     * @param string $zorgaanbiedernaam
+     * @param array  $gegevensdiensten
+     */
+    public function __construct(string $zorgaanbiedernaam, array $gegevensdiensten)
+    {
+        Assert::allIsInstanceOf($gegevensdiensten, Gegevensdienst::class);
+
+        $this->zorgaanbiedernaam = $zorgaanbiedernaam;
+        $this->gegevensdiensten = $gegevensdiensten;
+    }
+
+    /**
+     * @return string
+     */
+    public function getZorgaanbiedernaam(): string
+    {
+        return $this->zorgaanbiedernaam;
+    }
+
+    /**
+     * @param string $gegevensdienstId
+     *
+     * @return Gegevensdienst
+     */
+    public function getGegevensdienst(string $gegevensdienstId): Gegevensdienst
+    {
+        foreach ($this->gegevensdiensten as $gegevensdienst) {
+            if ($gegevensdienstId === $gegevensdienst->getGegevensdienstId()) {
+                return $gegevensdienst;
+            }
+        }
+
+        throw GegevensdienstNotFoundException::withId($gegevensdienstId);
+    }
 }

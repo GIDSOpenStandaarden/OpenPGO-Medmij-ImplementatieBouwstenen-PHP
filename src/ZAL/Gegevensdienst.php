@@ -71,6 +71,14 @@ class Gegevensdienst
     }
 
     /**
+     * @return string
+     */
+    public function getGegevensdienstId(): string
+    {
+        return $this->gegevensdienstId;
+    }
+
+    /**
      * @return AuthorizationEndpoint
      */
     public function getAuthorizationEndpoint(): AuthorizationEndpoint
@@ -84,5 +92,21 @@ class Gegevensdienst
     public function getTokenEndpoint(): TokenEndpoint
     {
         return $this->tokenEndpoint;
+    }
+
+    /**
+     * @param string $systeemrolcode
+     *
+     * @return Systeemrol
+     */
+    public function getSysteemrol(string $systeemrolcode): Systeemrol
+    {
+        foreach ($this->systeemrollen as $systeemrol) {
+            if ($systeemrolcode === $systeemrol->getSysteemrolcode()) {
+                return $systeemrol;
+            }
+        }
+
+        throw SysteemrolNotFoundException::withCode($systeemrolcode);
     }
 }

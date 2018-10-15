@@ -18,17 +18,17 @@
 
 declare(strict_types=1);
 
-namespace MedMij\OpenPGO\Client;
+namespace MedMij\OpenPGO\OCL;
 
-class InvalidContentTypeException extends \RuntimeException
+class OAuthClientNotFoundException extends \RuntimeException
 {
     /**
-     * @param string $contentType
+     * @param string $hostname
      *
-     * @return InvalidContentTypeException
+     * @return OAuthClientNotFoundException
      */
-    public static function withContentType(string $contentType)
+    public static function withHostname(string $hostname): self
     {
-        return new InvalidContentTypeException('invalid content type: '.$contentType);
+        return new self('oAuth client not found by hostname: '.$hostname);
     }
 }

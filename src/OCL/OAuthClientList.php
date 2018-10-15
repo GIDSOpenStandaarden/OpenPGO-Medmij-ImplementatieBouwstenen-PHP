@@ -21,6 +21,7 @@ declare(strict_types=1);
 namespace MedMij\OpenPGO\OCL;
 
 use JMS\Serializer\Annotation as JMS;
+use Webmozart\Assert\Assert;
 
 /**
  * @JMS\XmlRoot("OAuthclientlist")
@@ -50,4 +51,26 @@ class OAuthClientList
      * @JMS\SerializedName("OAuthclients")
      */
     private $oAuthClients = [];
+
+    /**
+     * @param \DateTimeImmutable $tijdstempel
+     * @param int                $volgnummer
+     * @param OAuthClient[]      $oAuthClients
+     */
+    public function __construct(\DateTimeImmutable $tijdstempel, int $volgnummer, array $oAuthClients)
+    {
+        Assert::allIsInstanceOf($oAuthClients, OAuthClient::class);
+
+        $this->tijdstempel = $tijdstempel;
+        $this->volgnummer = $volgnummer;
+        $this->oAuthClients = $oAuthClients;
+    }
+
+    /**
+     * @return OAuthClient[]
+     */
+    public function getOAuthClients(): array
+    {
+        return $this->oAuthClients;
+    }
 }
