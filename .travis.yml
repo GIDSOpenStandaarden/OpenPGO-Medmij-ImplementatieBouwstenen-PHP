@@ -1,6 +1,12 @@
 language: php
-
+dist: trusty
 sudo: false
+
+addons:
+  sonarcloud:
+    organization: "othillo-github"
+    token:
+      secure: "tcQzK6b2/qM61STx0WuFMrhPIaMfPM7Bik0A1raNVBaUJEK6Q1dhFkOJTXk3X+ucSRRbxLwPAIk2TnWsJonKNkO/OIn3mPlnU4Gs0X8qDmaF/RlkkP8ctjJF7zC3q46/xsmzrIFWSl9GinWaf1OchenaDIxWJw8F98RKPTYSzYVSADDGN7U0Zsa89zDhHDOMM9wceLHppKzt9fR8Cs8GpX2Mci6JNxki+iOOFEnFvAgU401A3pGpPPh+HvGipqB/ONVeU+702hQykGd6tGpvKENCq0Jzta3ZvolU1+Lqpv1/DHCoT2vH2vM6phVZd9Z6LCptZRM98rRAUg7YIgAIezAW0YoJXmor4wf56vS6mgKCMYhgXrlMET1x93R/xmJzNor0eefU503v1CCp+URy3r1b2QpzplouBr6wcd7sE4JGMJm9BJAL0+IybikPl+NWKaq3pKh3FXRdElS+g6YtiBFedSXG0bsjFKdYXThRgNrih2Meo/rcWz6d3icFK7q47KegnMrZWfZTeeyoFSL4QronrW7tw+l4mrBm76erID5MjYsFuG3otMLDroIlFm+nam0pGObgLP2tJF1JFA4aeoNf00yvAQ2QcW1QscgtxGuLZ/hocrEp6l2TBlwWkKwRBEv2CCpzxpR2e4l/FrcYbOiqrxR91/F1GN/IgR5vkTs="
 
 matrix:
   include:
@@ -13,8 +19,9 @@ install:
 - composer install
 
 script:
-- vendor/bin/phpunit --stop-on-failure
+- vendor/bin/phpunit --stop-on-failure --log-junit=junit.xml --coverage-clover=coverage.xml
 - vendor/bin/php-cs-fixer fix --config=".php_cs" --allow-risky=yes --dry-run --diff --verbose
+- sonar-scanner
 
 branches:
   only:
