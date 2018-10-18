@@ -21,6 +21,7 @@ declare(strict_types=1);
 namespace MedMij\OpenPGO\ZAL;
 
 use JMS\Serializer\Annotation as JMS;
+use Webmozart\Assert\Assert;
 
 /**
  * @JMS\XmlRoot("OAuthclientlist")
@@ -50,4 +51,26 @@ class Zorgaanbiederslijst
      * @JMS\SerializedName("Zorgaanbieders")
      */
     private $zorgaanbieders = [];
+
+    /**
+     * @param \DateTimeImmutable $tijdstempel
+     * @param int                $volgnummer
+     * @param Zorgaanbieder[]    $zorgaanbieders
+     */
+    public function __construct(\DateTimeImmutable $tijdstempel, int $volgnummer, array $zorgaanbieders)
+    {
+        Assert::allIsInstanceOf($zorgaanbieders, Zorgaanbieder::class);
+
+        $this->tijdstempel = $tijdstempel;
+        $this->volgnummer = $volgnummer;
+        $this->zorgaanbieders = $zorgaanbieders;
+    }
+
+    /**
+     * @return OAuthClient[]
+     */
+    public function getZorgaanbieders(): array
+    {
+        return $this->zorgaanbieders;
+    }
 }

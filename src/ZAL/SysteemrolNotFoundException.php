@@ -18,17 +18,17 @@
 
 declare(strict_types=1);
 
-namespace MedMij\OpenPGO\Client;
+namespace MedMij\OpenPGO\ZAL;
 
-class InvalidContentTypeException extends \RuntimeException
+class SysteemrolNotFoundException extends \RuntimeException
 {
     /**
-     * @param string $contentType
+     * @param string $systeemrolcode
      *
-     * @return InvalidContentTypeException
+     * @return SysteemrolNotFoundException
      */
-    public static function withContentType(string $contentType)
+    public static function withCode(string $systeemrolcode): self
     {
-        return new InvalidContentTypeException('invalid content type: '.$contentType);
+        return new self('Systeemtol not found by code: '.$systeemrolcode);
     }
 }

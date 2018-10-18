@@ -18,17 +18,17 @@
 
 declare(strict_types=1);
 
-namespace MedMij\OpenPGO\Client;
+namespace MedMij\OpenPGO\ZAL;
 
-class InvalidContentTypeException extends \RuntimeException
+class GegevensdienstNotFoundException extends \RuntimeException
 {
     /**
-     * @param string $contentType
+     * @param string $gegevensdienstId
      *
-     * @return InvalidContentTypeException
+     * @return GegevensdienstNotFoundException
      */
-    public static function withContentType(string $contentType)
+    public static function withId(string $gegevensdienstId): self
     {
-        return new InvalidContentTypeException('invalid content type: '.$contentType);
+        return new self('Gegevensdienst not found by id: '.$gegevensdienstId);
     }
 }

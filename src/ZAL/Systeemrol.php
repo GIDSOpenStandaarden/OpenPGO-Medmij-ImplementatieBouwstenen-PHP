@@ -37,4 +37,30 @@ class Systeemrol
      * @JMS\SerializedName("ResourceEndpoint")
      */
     private $resourceEndpoint;
+
+    /**
+     * @param string           $systeemrolcode
+     * @param ResourceEndpoint $resourceEndpoint
+     */
+    public function __construct(string $systeemrolcode, ResourceEndpoint $resourceEndpoint)
+    {
+        $this->systeemrolcode = $systeemrolcode;
+        $this->resourceEndpoint = $resourceEndpoint;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSysteemrolcode(): string
+    {
+        return $this->systeemrolcode;
+    }
+
+    /**
+     * @return ResourceEndpoint
+     */
+    public function getResourceEndpoint(): ResourceEndpoint
+    {
+        return $this->resourceEndpoint;
+    }
 }

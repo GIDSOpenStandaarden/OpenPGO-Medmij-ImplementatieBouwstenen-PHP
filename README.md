@@ -62,6 +62,15 @@ $client = new \MedMij\OpenPGO\OCL\OAuthClientListClient(
 $client->getOAuthClientList();
 ```
 
+The `OAuthClientService` provides a convenience method `getOAuthClientByHostname` to get an `OAuthClient`
+by its unique hostname.
+
+```php
+$service = new \MedMij\OpenPGO\OCL\OAuthClientService($client);
+
+$service->getOAuthClientByHostname('medmij.deenigeechtepgo.nl');
+```
+
 ## Retrieve ZAL
 
 see https://github.com/GidsOpenStandaarden/OpenPGO/blob/master/Resources/UCI%20Opvragen%20ZAL.pdf
@@ -75,6 +84,15 @@ $client = new \MedMij\OpenPGO\ZAL\ZALClient(
 );
 
 $client->getZAL();
+```
+
+The `ZorgaanbiederService` provides a convenience method `getZorgaanbiederByName` to get a `Zorgaanbieder`
+by its unique name.
+
+```php
+$service = new \MedMij\OpenPGO\ZAL\ZorgaanbiederService($client);
+
+$service->getZorgaanbiederByName('umcharderwijk@medmij');
 ```
 
 ## OAuth

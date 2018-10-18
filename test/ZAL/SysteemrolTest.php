@@ -18,17 +18,21 @@
 
 declare(strict_types=1);
 
-namespace MedMij\OpenPGO\Client;
+namespace MedMij\OpenPGO\ZAL;
 
-class InvalidContentTypeException extends \RuntimeException
+use PHPUnit\Framework\TestCase;
+
+class SysteemrolTest extends TestCase
 {
     /**
-     * @param string $contentType
-     *
-     * @return InvalidContentTypeException
+     * @test
      */
-    public static function withContentType(string $contentType)
+    public function it_exposes_a_resource_endpoint()
     {
-        return new InvalidContentTypeException('invalid content type: '.$contentType);
+        $expectedResourceEndpoint = 'https://medmij.za982.xisbridge.net/fhir';
+
+        $systeemrol = new Systeemrol('1337', new ResourceEndpoint($expectedResourceEndpoint));
+
+        $this->assertEquals($expectedResourceEndpoint, (string) $systeemrol->getResourceEndpoint());
     }
 }
