@@ -18,14 +18,14 @@
 
 declare(strict_types=1);
 
-namespace MedMij\OpenPGO\OCL;
+namespace MedMij\OpenPGO\GNL;
 
 use GuzzleHttp\Client as HttpClient;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use MedMij\OpenPGO\Client\MedMijClient;
 
-class OAuthClientListClient extends MedMijClient
+class GegevensdienstnamenlijstClient extends MedMijClient
 {
     /**
      * @param HttpClient $httpClient
@@ -33,15 +33,15 @@ class OAuthClientListClient extends MedMijClient
      */
     public function __construct(HttpClient $httpClient, string $endpoint)
     {
-        parent::__construct($httpClient, $endpoint, file_get_contents(__DIR__.'/../../Resources/xsd/MedMij_OAuthclientlist.xsd'));
+        parent::__construct($httpClient, $endpoint, file_get_contents(__DIR__.'/../../Resources/xsd/MedMij_Gegevensdienstnamenlijst.xsd'));
     }
 
     /**
-     * @return OAuthClientList
+     * @return Gegevensdienstnamenlijst
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getOAuthClientList(): OAuthClientList
+    public function getGegevensdienstnamenlijst(): Gegevensdienstnamenlijst
     {
         $response = $this->httpClient->request('GET', $this->endpoint);
         $this->assertXmlContentType($response);
@@ -54,6 +54,6 @@ class OAuthClientListClient extends MedMijClient
         /** @var Serializer $serializer */
         $serializer = SerializerBuilder::create()->build();
 
-        return $serializer->deserialize($xml, OAuthClientList::class, 'xml');
+        return $serializer->deserialize($xml, Gegevensdienstnamenlijst::class, 'xml');
     }
 }

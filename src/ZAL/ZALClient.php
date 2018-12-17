@@ -32,7 +32,7 @@ class ZALClient extends MedMijClient
      */
     public function __construct(HttpClient $httpClient, string $endpoint)
     {
-        parent::__construct($httpClient, $endpoint, file_get_contents(__DIR__.'/../../Resources/xsd/MedMij_Zorgaanbiederslijst-3.xsd'));
+        parent::__construct($httpClient, $endpoint, file_get_contents(__DIR__.'/../../Resources/xsd/MedMij_Zorgaanbiederslijst.xsd'));
     }
 
     /**

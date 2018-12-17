@@ -20,37 +20,30 @@ declare(strict_types=1);
 
 namespace MedMij\OpenPGO\Whitelist;
 
-use MedMij\OpenPGO\Client\MedMijClient;
+use JMS\Serializer\Annotation as JMS;
 
-class WhitelistService
+class MedMijNode
 {
     /**
-     * @var MedMijClient
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("Hostname")
      */
-    private $client;
+    private $hostname;
 
     /**
-     * @param MedMijClient $client
+     * @param string $hostname
      */
-    public function __construct(MedMijClient $client)
+    public function __construct(string $hostname)
     {
-        $this->client = $client;
+        $this->hostname = $hostname;
     }
 
     /**
-     * @param string $medMijNode
-     *
-     * @return bool
+     * @return string
      */
-    public function isMedMijNodeWhitelisted(string $medMijNode): bool
+    public function getHostname(): string
     {
-        /** @var Whitelist $whitelist */
-        $whitelist = $this->client->getWhitelist();
-
-        $hostnames = array_map(function (MedMijNode $medMijNode) {
-            return $medMijNode->getHostname();
-        }, $whitelist->getMedMijNodes());
-
-        return in_array($medMijNode, $hostnames);
+        return $this->hostname;
     }
 }

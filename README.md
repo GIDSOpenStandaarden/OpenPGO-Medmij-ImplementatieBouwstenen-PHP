@@ -95,6 +95,28 @@ $service = new \MedMij\OpenPGO\ZAL\ZorgaanbiederService($client);
 $service->getZorgaanbiederByName('umcharderwijk@medmij');
 ```
 
+## Retrieve Gegevensdienstnamenlijst
+
+The `GegevensdienstnamenlijstClient` can be used to retrieve the `Gegevensdienstnamenlijst`.
+
+```php
+$client = new \MedMij\OpenPGO\GNL\GegevensdienstnamenlijstClient(
+    new \GuzzleHttp\Client(),
+    'gegevensdienstnamenlijst endpoint'
+);
+
+$client->getGegevensdienstnamenlijst();
+```
+
+The `GegevensdienstnamenlijstService` provides a convenience method `getGegevensdienstById` to get a `Gegevensdienst`
+by its unique identifier.
+
+```php
+$service = new \MedMij\OpenPGO\GNL\GegevensdienstnamenlijstService($client);
+
+$service->getGegevensdienstById(42);
+```
+
 ## OAuth
 
 This library provides the building blocks for [Three Legged OAuth 2](http://oauthbible.com/#oauth-2-three-legged) authentication.

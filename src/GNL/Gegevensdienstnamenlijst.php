@@ -18,17 +18,17 @@
 
 declare(strict_types=1);
 
-namespace MedMij\OpenPGO\Whitelist;
+namespace MedMij\OpenPGO\GNL;
 
 use JMS\Serializer\Annotation as JMS;
 use Webmozart\Assert\Assert;
 
 /**
- * @JMS\XmlRoot("Whitelist")
+ * @JMS\XmlRoot("Gegevensdienstnamenlijst")
  * @JMS\XmlNamespace(uri="http://www.w3.org/2001/XMLSchema-instance", prefix="xsi")
- * @JMS\XmlNamespace(uri="xmlns://afsprakenstelsel.medmij.nl/whitelist/release2/")
+ * @JMS\XmlNamespace(uri="xmlns://afsprakenstelsel.medmij.nl/gegevensdienstnamenlijst/release1/")
  */
-class Whitelist
+class Gegevensdienstnamenlijst
 {
     /**
      * @var \DateTimeImmutable
@@ -45,32 +45,32 @@ class Whitelist
     private $volgnummer;
 
     /**
-     * @var string[]
-     * @JMS\Type("array<string>")
-     * @JMS\XmlList(entry="MedMijNode")
-     * @JMS\SerializedName("MedMijNodes")
+     * @var Gegevensdienst[]
+     * @JMS\Type("array<MedMij\OpenPGO\GNL\Gegevensdienst>")
+     * @JMS\XmlList(entry="Gegevensdienst")
+     * @JMS\SerializedName("Gegevensdienst")
      */
-    private $medMijNodes = [];
+    private $gegevensdiensten = [];
 
     /**
      * @param \DateTimeImmutable $tijdstempel
      * @param int                $volgnummer
-     * @param MedMijNode[]       $medMijNodes
+     * @param Gegevensdienst[]   $gegevensdiensten
      */
-    public function __construct(\DateTimeImmutable $tijdstempel, int $volgnummer, array $medMijNodes)
+    public function __construct(\DateTimeImmutable $tijdstempel, int $volgnummer, array $gegevensdiensten)
     {
-        Assert::allIsInstanceOf($medMijNodes, MedMijNode::class);
+        Assert::allIsInstanceOf($gegevensdiensten, Gegevensdienst::class);
 
         $this->tijdstempel = $tijdstempel;
         $this->volgnummer = $volgnummer;
-        $this->medMijNodes = $medMijNodes;
+        $this->gegevensdiensten = $gegevensdiensten;
     }
 
     /**
-     * @return MedMijNode[]
+     * @return Gegevensdienst[]
      */
-    public function getMedMijNodes(): array
+    public function getGegevensdiensten(): array
     {
-        return $this->medMijNodes;
+        return $this->gegevensdiensten;
     }
 }

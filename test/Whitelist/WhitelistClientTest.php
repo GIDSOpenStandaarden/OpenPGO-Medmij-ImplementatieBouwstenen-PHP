@@ -66,8 +66,11 @@ class WhitelistClientTest extends MedMijClientTest
     <Tijdstempel>invalid timestamp</Tijdstempel>
     <Volgnummer>invalid index</Volgnummer>
     <MedMijNodes>
-        <MedMijNode>nonunique.node</MedMijNode>
-        <MedMijNode>nonunique.node</MedMijNode>
+        <MedMijNode>
+            <Hostname>nonunique.node</Hostname>
+        </MedMijNode><MedMijNode>
+            <Hostname>nonunique.node</Hostname>
+        </MedMijNode>
     </MedMijNodes>
 </Whitelist>');
         $client = $this->createMockClientWithResponse($response);
@@ -88,14 +91,27 @@ class WhitelistClientTest extends MedMijClientTest
     <Tijdstempel>2018-04-16T10:43:41+01:00</Tijdstempel>
     <Volgnummer>28654</Volgnummer>
     <MedMijNodes>
-        <MedMijNode>specimen-stelselnode.medmij.nl</MedMijNode>
-        <MedMijNode>medmij.deenigeechtepgo.nl</MedMijNode>
-        <MedMijNode>pgocluster68.personalhealthprovider.net</MedMijNode>
-        <MedMijNode>78834.umcharderwijk.nl</MedMijNode>
-        <MedMijNode>medmij.za982.xisbridge.net</MedMijNode>
-        <MedMijNode>medmij.za983.xisbridge.net</MedMijNode>
-        <MedMijNode>medmij.xisbridge.net</MedMijNode>
-        <MedMijNode>rcf-rso.nl</MedMijNode>
+        <MedMijNode>
+            <Hostname>medmij.deenigeechtepgo.nl</Hostname>
+        </MedMijNode>
+        <MedMijNode>
+            <Hostname>pgocluster68.personalhealthprovider.net</Hostname>
+        </MedMijNode>
+        <MedMijNode>
+            <Hostname>78834.umcharderwijk.nl</Hostname>
+        </MedMijNode>
+        <MedMijNode>
+            <Hostname>medmij.za982.xisbridge.net</Hostname>
+        </MedMijNode>
+        <MedMijNode>
+            <Hostname>medmij.za983.xisbridge.net</Hostname>
+        </MedMijNode>
+        <MedMijNode>
+            <Hostname>medmij.xisbridge.net</Hostname>
+        </MedMijNode>
+        <MedMijNode>
+            <Hostname>rcf-rso.nl</Hostname>
+        </MedMijNode>
     </MedMijNodes>
 </Whitelist>');
         $client = $this->createMockClientWithResponse($response);
