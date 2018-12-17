@@ -21,6 +21,7 @@ declare(strict_types=1);
 namespace MedMij\OpenPGO\ZAL;
 
 use GuzzleHttp\Client as HttpClient;
+use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use MedMij\OpenPGO\Client\MedMijClient;
 

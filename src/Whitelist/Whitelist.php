@@ -45,8 +45,8 @@ class Whitelist
     private $volgnummer;
 
     /**
-     * @var string[]
-     * @JMS\Type("array<string>")
+     * @var MedMijNode[]
+     * @JMS\Type("array<MedMij\OpenPGO\Whitelist\MedMijNode>")
      * @JMS\XmlList(entry="MedMijNode")
      * @JMS\SerializedName("MedMijNodes")
      */

@@ -45,7 +45,7 @@ class Zorgaanbiederslijst
     private $volgnummer;
 
     /**
-     * @var OAuthClient[]
+     * @var Zorgaanbieder[]
      * @JMS\Type("array<MedMij\OpenPGO\ZAL\Zorgaanbieder>")
      * @JMS\XmlList(entry="Zorgaanbieder")
      * @JMS\SerializedName("Zorgaanbieders")
@@ -67,7 +67,7 @@ class Zorgaanbiederslijst
     }
 
     /**
-     * @return OAuthClient[]
+     * @return Zorgaanbieder[]
      */
     public function getZorgaanbieders(): array
     {

@@ -20,19 +20,17 @@ declare(strict_types=1);
 
 namespace MedMij\OpenPGO\Whitelist;
 
-use MedMij\OpenPGO\Client\MedMijClient;
-
 class WhitelistService
 {
     /**
-     * @var MedMijClient
+     * @var WhitelistClient
      */
     private $client;
 
     /**
-     * @param MedMijClient $client
+     * @param WhitelistClient $client
      */
-    public function __construct(MedMijClient $client)
+    public function __construct(WhitelistClient $client)
     {
         $this->client = $client;
     }
@@ -41,6 +39,8 @@ class WhitelistService
      * @param string $medMijNode
      *
      * @return bool
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function isMedMijNodeWhitelisted(string $medMijNode): bool
     {

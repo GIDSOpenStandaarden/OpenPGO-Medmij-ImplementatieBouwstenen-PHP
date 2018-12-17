@@ -33,7 +33,7 @@ class GegevensdienstnamenlijstClientTest extends MedMijClientTest
     /**
      * @param Response $response
      *
-     * @return OAuthClientListClient
+     * @return GegevensdienstnamenlijstClient
      */
     protected function createMockClientWithResponse(Response $response): GegevensdienstnamenlijstClient
     {

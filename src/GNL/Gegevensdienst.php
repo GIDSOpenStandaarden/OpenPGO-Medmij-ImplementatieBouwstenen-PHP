@@ -39,7 +39,7 @@ class Gegevensdienst
     private $weergavenaam;
 
     /**
-     * @param int $gegevensdienstId
+     * @param int    $gegevensdienstId
      * @param string $weergavenaam
      */
     public function __construct(int $gegevensdienstId, string $weergavenaam)
