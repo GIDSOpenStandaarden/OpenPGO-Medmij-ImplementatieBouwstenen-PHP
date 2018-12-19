@@ -5,12 +5,24 @@ gids-open-standaarden/open-pgo-medmij-implementatie-bouwstenen-php
 
 PHP implementation of the MedMij OpenPGO building blocks.
 
+## Version Guidance
+
+This library follows [Semantic Versioning](https://semver.org/).
+The versions of the Afspraken set are mapped to the versions of the library as follows:
+
+| Version Afsprakenset       | Status     | Version library |
+|----------------------------|------------|-----------------|
+| [Afsprakenset release 1.1] | Latest     | 0.2.*           |
+| Afsprakenset release 1.0   | EOL        | 0.1.*           |
+
+[Afsprakenset release 1.1]: https://afsprakenstelsel.medmij.nl/display/PUBLIC/Afsprakenset+release+1.1
+
 # Installation
 
 The OpenPGO PHP adapter can be installed using [Composer](https://getcomposer.org/):
 
 ```
-$ composer require gids-open-standaarden/open-pgo-medmij-implementatie-bouwstenen-php
+$ composer require gids-open-standaarden/open-pgo-medmij-implementatie-bouwstenen-php ~0.2
 ```
 
 # Configuration
