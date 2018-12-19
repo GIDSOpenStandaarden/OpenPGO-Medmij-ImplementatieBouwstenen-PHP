@@ -5,12 +5,24 @@ gids-open-standaarden/open-pgo-medmij-implementatie-bouwstenen-php
 
 PHP implementation of the MedMij OpenPGO building blocks.
 
+## Version Guidance
+
+This library follows [Semantic Versioning](https://semver.org/).
+The versions of the Afspraken set are mapped to the versions of the library as follows:
+
+| Version Afsprakenset       | Status     | Version library |
+|----------------------------|------------|-----------------|
+| [Afsprakenset release 1.1] | Latest     | 0.2.*           |
+| Afsprakenset release 1.0   | EOL        | 0.1.*           |
+
+[Afsprakenset release 1.1]: https://afsprakenstelsel.medmij.nl/display/PUBLIC/Afsprakenset+release+1.1
+
 # Installation
 
 The OpenPGO PHP adapter can be installed using [Composer](https://getcomposer.org/):
 
 ```
-$ composer require gids-open-standaarden/open-pgo-medmij-implementatie-bouwstenen-php
+$ composer require gids-open-standaarden/open-pgo-medmij-implementatie-bouwstenen-php ~0.2
 ```
 
 # Configuration
@@ -93,6 +105,28 @@ by its unique name.
 $service = new \MedMij\OpenPGO\ZAL\ZorgaanbiederService($client);
 
 $service->getZorgaanbiederByName('umcharderwijk@medmij');
+```
+
+## Retrieve Gegevensdienstnamenlijst
+
+The `GegevensdienstnamenlijstClient` can be used to retrieve the `Gegevensdienstnamenlijst`.
+
+```php
+$client = new \MedMij\OpenPGO\GNL\GegevensdienstnamenlijstClient(
+    new \GuzzleHttp\Client(),
+    'gegevensdienstnamenlijst endpoint'
+);
+
+$client->getGegevensdienstnamenlijst();
+```
+
+The `GegevensdienstnamenlijstService` provides a convenience method `getGegevensdienstById` to get a `Gegevensdienst`
+by its unique identifier.
+
+```php
+$service = new \MedMij\OpenPGO\GNL\GegevensdienstnamenlijstService($client);
+
+$service->getGegevensdienstById(42);
 ```
 
 ## OAuth

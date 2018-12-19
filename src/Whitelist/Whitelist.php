@@ -45,8 +45,8 @@ class Whitelist
     private $volgnummer;
 
     /**
-     * @var string[]
-     * @JMS\Type("array<string>")
+     * @var MedMijNode[]
+     * @JMS\Type("array<MedMij\OpenPGO\Whitelist\MedMijNode>")
      * @JMS\XmlList(entry="MedMijNode")
      * @JMS\SerializedName("MedMijNodes")
      */
@@ -55,11 +55,11 @@ class Whitelist
     /**
      * @param \DateTimeImmutable $tijdstempel
      * @param int                $volgnummer
-     * @param string[]           $medMijNodes
+     * @param MedMijNode[]       $medMijNodes
      */
     public function __construct(\DateTimeImmutable $tijdstempel, int $volgnummer, array $medMijNodes)
     {
-        Assert::allString($medMijNodes);
+        Assert::allIsInstanceOf($medMijNodes, MedMijNode::class);
 
         $this->tijdstempel = $tijdstempel;
         $this->volgnummer = $volgnummer;
@@ -67,7 +67,7 @@ class Whitelist
     }
 
     /**
-     * @return string[]
+     * @return MedMijNode[]
      */
     public function getMedMijNodes(): array
     {

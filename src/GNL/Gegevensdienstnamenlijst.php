@@ -18,17 +18,17 @@
 
 declare(strict_types=1);
 
-namespace MedMij\OpenPGO\ZAL;
+namespace MedMij\OpenPGO\GNL;
 
 use JMS\Serializer\Annotation as JMS;
 use Webmozart\Assert\Assert;
 
 /**
- * @JMS\XmlRoot("OAuthclientlist")
+ * @JMS\XmlRoot("Gegevensdienstnamenlijst")
  * @JMS\XmlNamespace(uri="http://www.w3.org/2001/XMLSchema-instance", prefix="xsi")
- * @JMS\XmlNamespace(uri="xmlns://afsprakenstelsel.medmij.nl/zorgaanbiederslijst/release2/")
+ * @JMS\XmlNamespace(uri="xmlns://afsprakenstelsel.medmij.nl/gegevensdienstnamenlijst/release1/")
  */
-class Zorgaanbiederslijst
+class Gegevensdienstnamenlijst
 {
     /**
      * @var \DateTimeImmutable
@@ -45,32 +45,32 @@ class Zorgaanbiederslijst
     private $volgnummer;
 
     /**
-     * @var Zorgaanbieder[]
-     * @JMS\Type("array<MedMij\OpenPGO\ZAL\Zorgaanbieder>")
-     * @JMS\XmlList(entry="Zorgaanbieder")
-     * @JMS\SerializedName("Zorgaanbieders")
+     * @var Gegevensdienst[]
+     * @JMS\Type("array<MedMij\OpenPGO\GNL\Gegevensdienst>")
+     * @JMS\XmlList(entry="Gegevensdienst")
+     * @JMS\SerializedName("Gegevensdienst")
      */
-    private $zorgaanbieders = [];
+    private $gegevensdiensten = [];
 
     /**
      * @param \DateTimeImmutable $tijdstempel
      * @param int                $volgnummer
-     * @param Zorgaanbieder[]    $zorgaanbieders
+     * @param Gegevensdienst[]   $gegevensdiensten
      */
-    public function __construct(\DateTimeImmutable $tijdstempel, int $volgnummer, array $zorgaanbieders)
+    public function __construct(\DateTimeImmutable $tijdstempel, int $volgnummer, array $gegevensdiensten)
     {
-        Assert::allIsInstanceOf($zorgaanbieders, Zorgaanbieder::class);
+        Assert::allIsInstanceOf($gegevensdiensten, Gegevensdienst::class);
 
         $this->tijdstempel = $tijdstempel;
         $this->volgnummer = $volgnummer;
-        $this->zorgaanbieders = $zorgaanbieders;
+        $this->gegevensdiensten = $gegevensdiensten;
     }
 
     /**
-     * @return Zorgaanbieder[]
+     * @return Gegevensdienst[]
      */
-    public function getZorgaanbieders(): array
+    public function getGegevensdiensten(): array
     {
-        return $this->zorgaanbieders;
+        return $this->gegevensdiensten;
     }
 }

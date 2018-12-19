@@ -18,39 +18,33 @@
 
 declare(strict_types=1);
 
-namespace MedMij\OpenPGO\Whitelist;
+namespace MedMij\OpenPGO\GNL;
 
-class WhitelistService
+class GegevensdienstnamenlijstService
 {
     /**
-     * @var WhitelistClient
+     * @var GegevensdienstnamenlijstClient
      */
     private $client;
 
     /**
-     * @param WhitelistClient $client
+     * @param GegevensdienstnamenlijstClient $client
      */
-    public function __construct(WhitelistClient $client)
+    public function __construct(GegevensdienstnamenlijstClient $client)
     {
         $this->client = $client;
     }
 
-    /**
-     * @param string $medMijNode
-     *
-     * @return bool
-     *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function isMedMijNodeWhitelisted(string $medMijNode): bool
+    public function getGegevensdienstById(int $id): Gegevensdienst
     {
-        /** @var Whitelist $whitelist */
-        $whitelist = $this->client->getWhitelist();
+        /** @var Gegevensdienstnamenlijst $egevensdienstnamenlijst */
+        $egevensdienstnamenlijst = $this->client->getGegevensdienstnamenlijst();
+        foreach ($egevensdienstnamenlijst->getGegevensdiensten() as $egevensdienst) {
+            if ($id === $egevensdienst->getGegevensdienstId()) {
+                return $egevensdienst;
+            }
+        }
 
-        $hostnames = array_map(function (MedMijNode $medMijNode) {
-            return $medMijNode->getHostname();
-        }, $whitelist->getMedMijNodes());
-
-        return in_array($medMijNode, $hostnames);
+        throw GegevensdienstNotFoundException::withId($id);
     }
 }

@@ -47,7 +47,13 @@ class WhitelistServiceTest extends TestCase
      */
     public function it_returns_true_when_node_is_whitelisted()
     {
-        $whitelist = new Whitelist(new \DateTimeImmutable(), 1337, ['specimen-stelselnode.medmij.nl']);
+        $whitelist = new Whitelist(
+            new \DateTimeImmutable(),
+            1337,
+            [
+                new MedMijNode('specimen-stelselnode.medmij.nl'),
+            ]
+        );
 
         $this->client
             ->getWhitelist()

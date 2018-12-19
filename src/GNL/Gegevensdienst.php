@@ -18,39 +18,41 @@
 
 declare(strict_types=1);
 
-namespace MedMij\OpenPGO\Whitelist;
+namespace MedMij\OpenPGO\GNL;
 
-class WhitelistService
+use JMS\Serializer\Annotation as JMS;
+
+class Gegevensdienst
 {
     /**
-     * @var WhitelistClient
+     * @var int
+     * @JMS\Type("int")
+     * @JMS\SerializedName("GegevensdienstId")
      */
-    private $client;
+    private $gegevensdienstId;
 
     /**
-     * @param WhitelistClient $client
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("Weergavenaam")
      */
-    public function __construct(WhitelistClient $client)
+    private $weergavenaam;
+
+    /**
+     * @param int    $gegevensdienstId
+     * @param string $weergavenaam
+     */
+    public function __construct(int $gegevensdienstId, string $weergavenaam)
     {
-        $this->client = $client;
+        $this->gegevensdienstId = $gegevensdienstId;
+        $this->weergavenaam = $weergavenaam;
     }
 
     /**
-     * @param string $medMijNode
-     *
-     * @return bool
-     *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return int
      */
-    public function isMedMijNodeWhitelisted(string $medMijNode): bool
+    public function getGegevensdienstId(): int
     {
-        /** @var Whitelist $whitelist */
-        $whitelist = $this->client->getWhitelist();
-
-        $hostnames = array_map(function (MedMijNode $medMijNode) {
-            return $medMijNode->getHostname();
-        }, $whitelist->getMedMijNodes());
-
-        return in_array($medMijNode, $hostnames);
+        return $this->gegevensdienstId;
     }
 }
